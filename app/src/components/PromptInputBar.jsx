@@ -21,7 +21,8 @@ export default function AIAssistant() {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 p-4">
+    <div className=''> 
+    <div className="flex justify-center align-middle items-center min-h-screen bg-gray-900 text-gray-100 p-4">
       <div className="max-w-3xl mx-auto">
         <header className="text-center mb-8">
           {/* <div className="inline-block bg-gray-800 rounded-full px-4 py-1 text-sm mb-4">
@@ -38,7 +39,7 @@ export default function AIAssistant() {
           </h1>
         </header>
 
-        <form onSubmit={handleSubmit} className="mb-6">
+        <form onSubmit={handleSubmit} className="mb-6 mt-12">
           <div className="bg-gray-800 rounded-lg p-6">
             <input
               type="text"
@@ -52,7 +53,7 @@ export default function AIAssistant() {
           </div>
         </form>
 
-        <div className="mb-6">
+        <div className="mb-6 mt-6">
           <div className="flex justify-between items-center mb-4">
             <div className="text-lg">Get started with an example below</div>
             <div className="flex space-x-2">
@@ -124,15 +125,16 @@ export default function AIAssistant() {
           </div>
         </div>
 
-        <div className="fixed bottom-4 right-4 flex space-x-2">
+        {/* <div className="fixed bottom-4 right-4 flex space-x-2">
           <button className="p-2 bg-gray-800 hover:bg-gray-700 rounded-full" aria-label="Close">
             <X className="w-6 h-6" />
           </button>
           <button className="p-2 bg-gray-800 hover:bg-gray-700 rounded-full" aria-label="Refresh">
             <RotateCcw className="w-6 h-6" />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
+  </div>
   );
 }
