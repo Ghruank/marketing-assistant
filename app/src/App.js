@@ -14,7 +14,7 @@ function App() {
         });
         const data = await res.json();
         console.log(data);
-        setResponse(data.message);  // Display the response from MetaAI
+        setResponse(data.message);  
     };
 
     return (

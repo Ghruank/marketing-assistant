@@ -23,3 +23,6 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 # openrouter, fal.ai, 
+
+
+# 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
