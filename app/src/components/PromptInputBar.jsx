@@ -1,73 +1,55 @@
-import React, { useState } from "react";
-import { Send } from "lucide-react";
-import Response from "./response";
+'use client'
 
-const PromptInputBar = ({ onSend }) => {
-  const [message, setMessage] = useState("");
-  const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false); // Add loading state
+import { useState } from 'react'
 
-  const handleSend = async () => {
-    if (message.trim()) {
-      setLoading(true); // Set loading to true when request starts
+export default function PromptInput() {
+  const [prompt, setPrompt] = useState('')
+  const [submittedPrompt, setSubmittedPrompt] = useState('')
 
-      try {
-        const res = await fetch("http://localhost:5000/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message }),
-        });
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // setSubmittedPrompt(prompt)
+    // setPrompt('')
+  }
 
-        const data = await res.json();
-        setResponse(data.message);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false); // Set loading to false when request completes
-      }
-
-      setMessage("");
-    }
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-8">
-      <div className="fixed top-0 left-0 right-0 p-8 flex items-center space-x-4">
-        <textarea
-          className="flex-grow bg-gray-900 h-20 resize-none p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-          rows="1"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyPress={handleKeyPress}
-          placeholder="Type your message here..."
-        />
-        <button
-          className="p-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none"
-          onClick={handleSend}
-          aria-label="Send Message"
-          disabled={loading} // Disable button while loading
-        >
-<Send size={20} />
-        </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-4 text-gray-800">Prompt Input</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="promptInput" className="block text-sm font-medium text-gray-700 mb-1">
+              Enter your prompt:
+            </label>
+            <input
+              type="text"
+              id="promptInput"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              required
+              aria-describedby="promptDescription"
+            />
+            <p id="promptDescription" className="sr-only">
+              Enter the prompt you want to submit
+            </p>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out"
+          >
+            Submit
+          </button>
+        </form>
+        {submittedPrompt && (
+          <div className="mt-4 p-3 bg-gray-100 rounded-md">
+            <p className="text-sm text-gray-600">
+              Submitted Prompt: <span className="font-medium">{submittedPrompt}</span>
+            </p>
+          </div>
+        )}
       </div>
-
-      {/* Loader: Display while loading */}
-      {loading ? (
-        <div className="mt-4 text-center text-white">Loading...</div>
-      ) : (
-        response && <Response response={response} />
-      )}
     </div>
-  );
-};
-
-export default PromptInputBar;
+  )
+}
