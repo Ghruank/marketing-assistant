@@ -8,11 +8,16 @@ CORS(app)
 
 ai = MetaAI() 
 
-@app.route('/api/meta', methods=['POST'])
+@app.route('/', methods=['POST'])
 def meta_api():
     user_prompt = request.json.get("prompt")
-    response = ai.prompt(message=user_prompt)
-    return jsonify({"response": response})
+    # print(user_prompt)
+    response = ai.prompt(message=("give me a 5 liner paragraph, creatively marketing. just give me the para, not any intro to it" + user_prompt))
+    m = response.get("message")
+    print(m)
+    # print(jsonify({"message": m}))
+    return jsonify({"message": m})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
