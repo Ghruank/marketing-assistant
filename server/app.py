@@ -60,7 +60,10 @@ def get_openrouter_response(prompt, context):
 
 @app.route('/', methods=['POST'])
 def openrouter_api():
-    user_prompt = request.json.get("prompt")
+    query = request.json.get("query")
+    region = request.json.get("region")
+    month = request.json.get("month")
+    genz = request.json.get("genz")
 
     with open("./Assets/dataset2.txt", "r", encoding='utf-8') as file:
         context = file.read()
@@ -68,10 +71,15 @@ def openrouter_api():
     # full_prompt = "you are a master at analaysis. analyse the context given to you, and design the perfect marketing paragraph for my event/product, that is - " + user_prompt + ". give only the paragraph, without the need of any intro, and return in an object form, with the key as 'message' and value as the paragraph. for example: {message: 'your paragraph'} this paragraph would be of 5 lines, and should be creative and marketing oriented. "
     # print(full_prompt)
 
-    response_data = get_openrouter_response(full_prompt, context)
-    m = response_data.get("choices")[0].get("message", {}).get("content", "")
-    response = ai.prompt(message=("give me a 5 liner paragraph, creatively marketing. just give me the para, not any intro to it" + user_prompt))
+    # response_data = get_openrouter_response(full_prompt, context)
+    # m = response_data.get("choices")[0].get("message", {}).get("content", "")
+    message=("give me a simple creative paragraph in english to be used for marketing on "+query+". sell the product as much as you can. give only the para, nothing else, no intros or shit because im webscraping from you. it should not be more than 10 lines. the month of occurence is"+month+", so take the festivals of india which happens during that month. the state is "+region+". use " + ("genz language" if genz else "traditional language"))
+    response = ai.prompt(message)
     m = response.get("message")
+    # print(request.json)
+    # print(region, query, month, genz)
+    # print(message)
+    print(m)
     return jsonify({"message": m[1:-1]})
 
 if __name__ == '__main__':
