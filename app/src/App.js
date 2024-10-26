@@ -15,11 +15,11 @@ function App() {
     <div >
       {/* <Bg /> */}
       {/* <PromptInputBar /> */}
-      <Inputpage/>
+      {/* <Inputpage/> */}
         <Router>
             <Routes>
                 <Route path="/" element={<Bg />} />
-                <Route path="/main" element={<PromptInputBar/>} />
+                <Route path="/main" element={<Inputpage/>} />
             </Routes>
         </Router>
     </div>

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Camera, RotateCcw } from 'lucide-react';
 import Input from './Input'; // Assuming Input is in the same folder
 import Switch from './Switch'; // Assuming Switch component is in the same folder
+import './BackImage.css';
 
 export default function Inputpage() {
   const [query, setQuery] = useState("");
@@ -29,7 +30,15 @@ export default function Inputpage() {
 
   return (
     <div className=''>
-      <div className="min-h-screen bg-gray-900 text-gray-100 p-4">
+      <div className="min-h-screen text-gray-100 p-4"style={{
+      backgroundImage: "url('./grad.jpg')",
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      height: '100vh',
+      width: '100vw',
+      fontFamily: "Ubuntu",
+    }}>
+      <div style={{ height: '100px' }}></div>
         <div className="max-w-3xl mx-auto">
           <header className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-serif mb-4">
@@ -37,7 +46,7 @@ export default function Inputpage() {
             </h1>
           </header>
 
-          <form onSubmit={handleSubmit} className="mb-6 mt-12 flex flex-row align-middle items-center">
+          <form onSubmit={handleSubmit} className="mb-6 mt-12 flex flex-row align-middle items-center black" style={{ color: "black", caretColor: "black" }}>
             <Input value={query} onChange={handleQueryChange} onSubmit={handleSubmit} />
           </form>
 
@@ -55,7 +64,7 @@ export default function Inputpage() {
               
               {/* Region Input Box */}
               <div className="">
-                <label htmlFor="regionInput" className="block text-gray-700 p-1">Enter Region</label>
+                {/* <label htmlFor="regionInput" className="block text-gray-700 p-1">Enter Region</label> */}
                 <input
                   id="regionInput"
                   value={region}
@@ -67,7 +76,7 @@ export default function Inputpage() {
 
               {/* Month Dropdown */}
               <div className="">
-                <label htmlFor="dropdownMonth" className="block text-gray-700 p-1">Select Month</label>
+                {/* <label htmlFor="dropdownMonth" className="block text-gray-700 p-1">Select Month</label> */}
                 <select
                   id="dropdownMonth"
                   value={month}
