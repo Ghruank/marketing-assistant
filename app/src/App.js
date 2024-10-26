@@ -4,7 +4,7 @@ import PromptInputBar from './components/PromptInputBar';
 // import Home from './components/Home';
 // import InteractiveBackground from './components/interactivebg';
 import { Bg } from './components/bg';
-
+import Inputpage from './components/inputpage'
 function App() {
 
   // const handleSubmit = async (e) => {
@@ -21,8 +21,9 @@ function App() {
 
   return (
     <div >
-      <Bg />
+      {/* <Bg /> */}
       {/* <PromptInputBar /> */}
+      <Inputpage/>
     </div>
   );
 }

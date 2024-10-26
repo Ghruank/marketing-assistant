@@ -125,9 +125,6 @@ export default function AIAssistant() {
                     <option value="October">October</option>
                     <option value="November">November</option>
                     <option value="December">December</option>
-
-
-
                   </select>
                 </div>
 
@@ -149,11 +146,8 @@ export default function AIAssistant() {
                     </div>
                   </label>
                 </div>
-
-
               </div>
             </div>
-
           </div>
 
           {
