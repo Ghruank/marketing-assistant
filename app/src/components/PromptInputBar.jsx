@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Camera, Paperclip, X, RotateCcw } from 'lucide-react';
-
+import './BackImage.css';
 export default function AIAssistant() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
@@ -31,8 +31,16 @@ export default function AIAssistant() {
 
 
   return (
-    <div className=''>
-      <div className="min-h-screen bg-gray-900 text-gray-100 p-4">
+    <div className='' >
+      <div className="min-h-screen text-gray-100 p-4 "style={{
+      backgroundImage: "url('./grad.jpg')",
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      height: '100vh',
+      width: '100vw',
+      fontFamily: "Ubuntu",
+    }}>
+    <div style={{ height: '100px' }}></div>
         <div className="max-w-3xl mx-auto">
           <header className="text-center mb-8">
             {/* <div className="inline-block bg-gray-800 rounded-full px-4 py-1 text-sm mb-4">
@@ -138,7 +146,7 @@ export default function AIAssistant() {
                       onChange={() => setGenz(!genz)}
                       className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-blue-600 transition-all">
+                    <div className="w-11 h-7 bg-gray-300 rounded-full peer peer-checked:bg-blue-600 flex items-center transition-all">
                       <div
                         className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${genz ? 'translate-x-5' : 'translate-x-0'
                           }`}
