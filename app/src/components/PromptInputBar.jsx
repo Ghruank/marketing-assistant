@@ -4,21 +4,31 @@ import React, { useState } from 'react';
 import { Camera, Paperclip, X, RotateCcw } from 'lucide-react';
 
 export default function AIAssistant() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
+  const [response, setResponse] = useState("");
+  const [region, setRegion] = useState("");
+  const [month, setMonth] = useState("");
+  const [genz, setGenz] = useState(false);
+  
 
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted query:', query);
-    // Here you would typically send the query to your AI service
-  };
+    const res = await fetch("http://127.0.0.1:5000/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query, region, month, genz }),
+    });
+    const data = await res.json();
+    console.log(data);
+    setResponse(data.message);
+    console.log({response})
+};
 
-  const [dropdown1, setDropdown1] = useState("");
-  const [dropdown2, setDropdown2] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
+  
 
   return (
     <div className=''> 
@@ -32,10 +42,10 @@ export default function AIAssistant() {
             </button>
           </div> */}
           <h1 className="text-4xl md:text-5xl font-serif mb-4">
-            <span className="text-orange-400 mr-2" aria-hidden="true">
+            {/* <span className="text-orange-400 mr-2" aria-hidden="true">
               ✻
-            </span>{' '}
-            Happy late night Mohammed
+            </span>{' '} */}
+            AI Powered Marketing Assistant
           </h1>
         </header>
 
@@ -55,15 +65,15 @@ export default function AIAssistant() {
 
         <div className="mb-6 mt-6">
           <div className="flex justify-between items-center mb-4">
-            <div className="text-lg">Get started with an example below</div>
+            <div className="text-lg">Tune the parameters below</div>
             <div className="flex space-x-2">
               <button className="p-2 hover:bg-gray-800 rounded-full" aria-label="Add image">
                 <Camera className="w-6 h-6" />
               </button>
-              <button className="flex items-center space-x-1 bg-gray-800 hover:bg-gray-700 rounded-full px-4 py-2">
-                <Paperclip className="w-4 h-4" />
-                <span>Add content</span>
-              </button>
+              {/* <button className="flex items-center space-x-1 bg-gray-800 hover:bg-gray-700 rounded-full px-4 py-2">
+                {/* <Paperclip className="w-4 h-4" />
+                <span>Add content</span> */}
+              {/* </button> */} 
             </div>
           </div>
 
@@ -72,50 +82,62 @@ export default function AIAssistant() {
           <div className="flex justify-evenly align-middle items-center">
       {/* Dropdown 1 */}
       <div className = "">
-        <label htmlFor="dropdown1" className="block text-gray-700 p-1">Select Option 1</label>
+        <label htmlFor="dropdown1" className="block text-gray-700 p-1">Select Region</label>
         <select
           id="dropdown1"
-          value={dropdown1}
-          onChange={(e) => setDropdown1(e.target.value)}
+          value={region}
+          onChange={(e) => setRegion(e.target.value)}
           className="bg-gray-800 text-white rounded-lg p-2 w-full"
         >
-          <option value="" disabled>Select an option</option>
-          <option value="Option 1">Option 1</option>
-          <option value="Option 2">Option 2</option>
-          <option value="Option 3">Option 3</option>
+          <option value="" disabled>Select Region</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="kerala">Kerala</option>
         </select>
       </div>
 
       {/* Dropdown 2 */}
       <div  className = "">
-        <label htmlFor="dropdown1" className="block text-gray-700 p-1">Select Option 1</label>
+        <label htmlFor="dropdown1" className="block text-gray-700 p-1">Select Month</label>
         <select
           id="dropdown1"
-          value={dropdown1}
-          onChange={(e) => setDropdown1(e.target.value)}
+          value={month}
+          onChange={(e) => setMonth(e.target.value)}
           className="bg-gray-800 text-white rounded-lg p-2 w-full"
         >
-          <option value="" disabled>Select an option</option>
-          <option value="Option 1">Option 1</option>
-          <option value="Option 2">Option 2</option>
-          <option value="Option 3">Option 3</option>
+          <option value="" disabled>Select month</option>
+          <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+            
+
+
         </select>
       </div>
 
       {/* Slider-styled Checkbox */}
       <div className="flex items-center space-x-2">
-        <span className="text-gray-700">Toggle Option</span>
+        <span className="text-gray-700">GenZ</span>
         <label className="relative inline-flex items-center cursor-pointer">
           <input
             type="checkbox"
-            checked={isChecked}
-            onChange={() => setIsChecked(!isChecked)}
+            checked={genz}
+            onChange={() => setGenz(!genz)}
             className="sr-only peer"
           />
           <div className="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-blue-600 transition-all">
             <div
               className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform ${
-                isChecked ? 'translate-x-5' : 'translate-x-0'
+                genz ? 'translate-x-5' : 'translate-x-0'
               }`}
             />
           </div>
