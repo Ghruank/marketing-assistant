@@ -1,9 +1,9 @@
 import React from 'react';
 // import { a } from 'react-router-dom';
-
+import styled from "styled-components";
 function Navbar() {
   return (
-    <nav className="bg-[#0B5563] py-4">
+    <nav className=" py-4 pl-9 pr-9">
       <div className="container mx-auto flex justify-between items-center">
         {/* Left side: Logo and Hyprland */}
         <div className="flex items-center space-x-2 ml-9">
@@ -24,29 +24,33 @@ function Navbar() {
               />
             </svg>
           </div>
-          <span className="text-white text-xl font-bold">Hyprland</span>
+          <span className="text-white text-xl font-bold">ZaverAI</span>
         </div>
 
         {/* Right side: Nav links and icons */}
-        <div className="flex items-center space-x-6 text-white mr-9">
+        <div className="flex items-center space-x-6 text-white mr-9 rounded-full pl-6 pr-6 pt-2 pb-2 bg-transparent border-2 border-sky-300">
           <a href="#" className="hover:text-cyan-400 transition duration-300">
             Get started
           </a>
           <a href="#" className="hover:text-cyan-400 transition duration-300">
             Plugins
           </a>
+          <a href="#" className="hover:text-cyan-400 transition duration-300 ">
+            Docs
+          </a>
 
           {/* Icons */}
 
           {/* Install Button */}
           <a href="#" className="ml-6">
-            <button className="bg-cyan-500 text-white px-4 py-2 rounded-full hover:bg-cyan-600 transition duration-300">
+            <button className="bg-cyan-500 text-black px-4 py-2 rounded-full hover:bg-cyan-600 transition duration-300 ">
               INSTALL
             </button>
           </a>
         </div>
       </div>
     </nav>
+    
   );
 }
 
