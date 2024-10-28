@@ -13,8 +13,8 @@ const Home = () => {
 
       <div className='h-full flex flex-col text-center justify-center mt-36'>
         <div>
-          <p className=' text-7xl capitalize m-5 font-bold animate__animated animate__slideInUp text-white'>AI Powered</p>
-          <p className=' text-7xl capitalize text-blue-500 font-bold animate__animated animate__slideInUp'>Marketing Assistant</p>
+          <p className=' text-7xl capitalize m-5 font-bold animate__animated animate__slideInUp text-white'>AI Driven</p>
+          <p className=' text-7xl capitalize text-blue-500 font-bold animate__animated animate__slideInUp'>Marketing Companion</p>
           <p className='text-2xl m-4 font-mono animate__animated animate__slideInUp text-white'>Unleash the power of precision marketing—drive impact like never before.</p>
           {/* <p className='text-2xl m-4 font-mono animate__animated animate__slideInUp text-white'>Duis sed dapibus leo nec ornare diam sed commodo nibh ante facilisis bibendum.</p> */}
         </div>

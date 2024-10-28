@@ -4,21 +4,25 @@ import React, { useState } from 'react';
 import { Camera, RotateCcw } from 'lucide-react';
 import Input from './Input'; // Assuming Input is in the same folder
 import Switch from './Switch'; // Assuming Switch component is in the same folder
+import Loader from './Loader';
 import './BackImage.css';
-
+import Response from './Response';
 export default function Inputpage() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
   const [region, setRegion] = useState("");
   const [month, setMonth] = useState("");
   const [genz, setGenz] = useState(false);
-
+  const [loading, setLoading] = useState(false); // State to track loading
+const [k, setK] = useState(0);
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
+    setK(1);// Set loading to true when submitting
     const res = await fetch("http://127.0.0.1:5000/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -26,6 +30,7 @@ export default function Inputpage() {
     });
     const data = await res.json();
     setResponse(data.message);
+    setLoading(false); // Set loading to false after receiving response
   };
 
   return (
@@ -42,7 +47,7 @@ export default function Inputpage() {
         <div className="max-w-3xl mx-auto">
           <header className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-serif mb-4">
-              AI Powered Marketing Assistant
+              AI Marketing Companion
             </h1>
           </header>
 
@@ -61,7 +66,6 @@ export default function Inputpage() {
             </div>
 
             <div className="flex justify-evenly align-middle items-center">
-              
               {/* Region Input Box */}
               <div className="">
                 {/* <label htmlFor="regionInput" className="block text-gray-700 p-1">Enter Region</label> */}
@@ -101,27 +105,38 @@ export default function Inputpage() {
 
               {/* Custom Switch Toggle */}
               <div className="flex items-center space-x-2">
-                <span className="text-gray-700">GenZ</span>
+                <span className="text-white-700">GenZ</span>
                 <Switch checked={genz} onChange={() => setGenz(!genz)} />
               </div>
             </div>
           </div>
 
-          {response && (
-            <div className="bg-gray-800 rounded-lg p-6">
-              <div className="flex justify-between items-center mb-4">
-                <div className="text-lg">Response</div>
-                <button
-                  onClick={() => setResponse("")}
-                  className="p-2 hover:bg-gray-800 rounded-full"
-                  aria-label="Clear response"
-                >
-                  <RotateCcw className="w-6 h-6" />
-                </button>
+          {/* Response and Loader Handling */}
+          <div className={k ? "bg-gray-800 rounded-lg p-6" : "rounded-lg p-0"} >
+            {loading ? (
+              <div>
+                <Loader />
               </div>
-              <div className="text-xl">{response}</div>
-            </div>
-          )}
+            ) : (
+              <>
+                {response && (
+                  <>
+                    <div className="flex justify-between items-center mb-4">
+                      <div className="text-lg">Response</div>
+                      <button
+                        onClick={() => setResponse("")}
+                        className="p-2 hover:bg-gray-800 rounded-full"
+                        aria-label="Clear response"
+                      >
+                        <RotateCcw className="w-6 h-6" />
+                      </button>
+                    </div>
+                    <div className="text-xl ">{response}</div>
+                  </>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -73,14 +73,14 @@ def openrouter_api():
 
     # response_data = get_openrouter_response(full_prompt, context)
     # m = response_data.get("choices")[0].get("message", {}).get("content", "")
-    message=("give me a simple creative paragraph in english to be used for marketing on "+query+". sell the product as much as you can. give only the para, nothing else, no intros or shit because im webscraping from you. it should not be more than 10 lines.use " + ("genz language" if genz else "traditional language")+  "the month of occurence is"+month+", so take the only one festival of india which happens during that month and the festival should be decided on basis of genz or not . the state is "+region)
+    message=(" without any intro, give me a simple creative paragraph in english to be used for marketing on "+query+". sell the product as much as you can. give only the para, nothing else, no intros or shit because im webscraping from you. it should not be more than 10 lines.use " + ("genz slang language" if genz else "traditional language")+  " the month of occurence is "+month+", so take the only one festival of india which happens during that month and the festival should be decided on basis of genz or not . the state is "+region)
     response = ai.prompt(message)
     m = response.get("message")
     # print(request.json)
     # print(region, query, month, genz)
     # print(message)
     print(m)
-    return jsonify({"message": m[1:-1]})
+    return jsonify({"message": m})
 
 if __name__ == '__main__':
     app.run(debug=True)

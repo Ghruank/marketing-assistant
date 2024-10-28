@@ -5,8 +5,8 @@ import { Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 function Navbar() {
   return (
-    <nav className=" py-4 pl-9 pr-9">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className=" py-4 pl-9 pr-9 top-0">
+      <div className="container mx-auto flex justify-between items-center fixed">
         {/* Left side: Logo and Hyprland */}
         <div className="flex items-center space-x-2 ml-9">
           <div className="bg-[#0B5563] border border-cyan-500 p-1 rounded-full">
@@ -26,7 +26,7 @@ function Navbar() {
               />
             </svg>
           </div>
-          <span className="text-white text-xl font-bold">Mappa</span>
+          <span className="text-white text-xl font-bold">zaverAI</span>
         </div>
 
         {/* Right side: Nav links and icons */}
